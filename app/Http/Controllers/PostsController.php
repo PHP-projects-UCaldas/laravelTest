@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PostsController extends Controller
 {
@@ -24,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create');
+        return view('dashboard.posts.create', ['post' => new Post()]);
     }
 
     /**
@@ -33,9 +35,10 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        Post::create($request->validated());
+        return back()->with('status', 'Publicación generada con éxito');
     }
 
     /**
@@ -46,7 +49,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +60,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit');
+        return view('dashboard.posts.edit', ['post' => $post]);
     }
 
     /**
@@ -67,9 +70,10 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        return back()->with('status', 'Publicación actualizada con éxito');
     }
 
     /**
@@ -80,6 +84,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return back()->with('status', 'Publicación eliminada con éxito');
     }
 }
