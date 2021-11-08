@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
@@ -21,4 +22,5 @@ Route::get('/', function () {
 
 Route::prefix('dashboard')->group(function () {
     Route::resource('posts', PostsController::class);
+    Route::resource('category', CategoryController::class);
 });
