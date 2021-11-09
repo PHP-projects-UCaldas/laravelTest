@@ -25,7 +25,9 @@ class PostRequest extends FormRequest
     {
         return [
             'publication' => 'required|min:3|max:50',
-            'content_publication' => 'required|min:3|max:150'
+            'content_publication' => 'required|min:3|max:500',
+            'state_publication' => 'required',
+            'category_id' => 'required'
         ];
     }
 }

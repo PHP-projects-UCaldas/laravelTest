@@ -1,5 +1,6 @@
 @extends('dashboard.master')
 @section('content')
+<a href="{{ route('posts.create') }}" class="btn btn-info btn-small mb-3">Crear publicación</a>
     <h6>Listar publicaciones</h6>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>

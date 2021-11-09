@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -27,7 +28,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.posts.create', ['post' => new Post()]);
+        $categories = Category::pluck('id', 'category_name');
+        return view('dashboard.posts.create', ['post' => new Post(), 'categories' => $categories]);
     }
 
     /**
@@ -61,7 +63,8 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', ['post' => $post]);
+        $categories = Category::pluck('id', 'category_name');
+        return view('dashboard.posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**

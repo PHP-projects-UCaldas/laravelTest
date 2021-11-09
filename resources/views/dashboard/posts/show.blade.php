@@ -19,5 +19,5 @@
         {{  $post -> content_publication }}
     </textarea>
 </div>
-<button class="btn btn-danger" href="{{ URL::previous() }}" >Aceptar</button>
+<a class="btn btn-danger" href="{{ URL::previous() }}" >Aceptar</a>
 @endsection
