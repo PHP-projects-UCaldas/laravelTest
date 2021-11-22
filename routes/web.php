@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('dashboard')->group(function () {
-    Route::resource('posts', PostsController::class);
+    Route::resource('posts', PostsController::class); //-> middleware('auth');
     Route::resource('category', CategoryController::class);
 });
 Auth::routes();
